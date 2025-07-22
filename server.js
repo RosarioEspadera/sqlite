@@ -45,3 +45,20 @@ app.get('/users', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+app.put('/users/:id', (req, res) => {
+  const { name, role } = req.body;
+  const { id } = req.params;
+
+  db.run(
+    'UPDATE users SET name = ?, role = ? WHERE id = ?',
+    [name, role, id],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send('Update error');
+      } else {
+        res.send({ updated: true, changes: this.changes });
+      }
+    }
+  );
+});
