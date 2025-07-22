@@ -31,6 +31,22 @@ function saveRow(id) {
     }
   });
 }
+function deleteRow(id) {
+  if (!confirm('Delete this user?')) return;
+
+  fetch(`https://sqlite-2jup.onrender.com/users/${id}`, {
+    method: 'DELETE'
+  })
+  .then(res => {
+    if (res.ok) {
+      alert('🗑️ User deleted');
+      location.reload();
+    } else {
+      alert('❌ Delete failed');
+    }
+  });
+}
+
 document.getElementById('createForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
