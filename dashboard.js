@@ -31,3 +31,21 @@ function saveRow(id) {
     }
   });
 }
+document.getElementById('createForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('newName').value;
+  const role = document.getElementById('newRole').value;
+
+  fetch('https://sqlite-2jup.onrender.com/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, role })
+  })
+  .then(res => res.json())
+  .then(newUser => {
+    alert('✅ User created!');
+    location.reload(); // quick refresh to show new user
+  })
+  .catch(err => alert('❌ Creation failed'));
+});
