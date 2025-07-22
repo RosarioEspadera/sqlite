@@ -77,3 +77,14 @@ app.post('/users', (req, res) => {
     }
   );
 });
+app.delete('/users/:id', (req, res) => {
+  const { id } = req.params;
+  db.run('DELETE FROM users WHERE id = ?', [id], function (err) {
+    if (err) {
+      console.error('Delete error:', err.message);
+      res.status(500).send('Delete error');
+    } else {
+      res.send({ deleted: true });
+    }
+  });
+});
