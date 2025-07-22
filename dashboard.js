@@ -8,7 +8,10 @@ fetch('https://sqlite-2jup.onrender.com/users')
         <td>${user.id}</td>
         <td><input type="text" value="${user.name}" data-id="${user.id}" data-field="name" /></td>
         <td><input type="text" value="${user.role}" data-id="${user.id}" data-field="role" /></td>
-        <td><button onclick="saveRow(${user.id})">💾 Save</button></td>
+        <td>
+        <button onclick="saveRow(${user.id})">💾 Save</button>
+        <button onclick="deleteRow(${user.id})" style="margin-left: 0.4rem;">🗑️ Delete</button>
+        </td>
       `;
       tbody.appendChild(row);
     });
