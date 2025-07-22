@@ -62,3 +62,18 @@ app.put('/users/:id', (req, res) => {
     }
   );
 });
+app.post('/users', (req, res) => {
+  const { name, role } = req.body;
+  db.run(
+    'INSERT INTO users (name, role) VALUES (?, ?)',
+    [name, role],
+    function (err) {
+      if (err) {
+        console.error('Insert error:', err.message);
+        res.status(500).send('Insert error');
+      } else {
+        res.status(201).json({ id: this.lastID, name, role });
+      }
+    }
+  );
+});
