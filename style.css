@@ -1,0 +1,87 @@
+:root {
+  --bg: #fcfcfc;
+  --text: #222;
+  --accent: #0b7dda;
+  --accent-dark: #095c9d;
+  --border: #ddd;
+  --font: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 2rem;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6rem;
+  text-align: left;
+}
+
+th {
+  background: #f8f8f8;
+  font-weight: 600;
+}
+
+input {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    padding-left: 50%;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    font-weight: bold;
+    color: #666;
+  }
+}
